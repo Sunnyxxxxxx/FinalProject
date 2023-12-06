@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Model;
 
-public class Sessions
+public class Equipment
 {
-    public List <Session> sessions { get; set; }
+    public int EquipmentId { get; set; }
+    public string Description { get; set; }
+    public int Numbers { get; set; }
 }

@@ -9,7 +9,7 @@ namespace FinalProject.Model;
 
 public class Trainers
     {
-        public List<Trainer> trainers { get; set; }
+        public List <Trainer> trainers { get; set; }
 
         public Trainers()
         {
