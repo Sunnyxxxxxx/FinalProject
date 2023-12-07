@@ -127,5 +127,14 @@ public class Program
             }
 
         }
+        static void MakeTrainerReservation(Trainers trainers, Sessions sessions, Members members, int authenticatedMemberId)
+        {
+            if (authenticatedMember == null)
+            {
+                Console.WriteLine("You are not logged in.");
+                return;
+            }
+
+        }
     }
 }
