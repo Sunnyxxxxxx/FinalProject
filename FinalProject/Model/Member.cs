@@ -15,55 +15,31 @@ public class Member
     public string LastName { get; set; }
     public int Age { get; set; }
     public string Password { get; set; }
-    private string EmergencyContact { get; set; } 
+
     private static int account = 1000;
 
-    public Member(int age)
+    private Member(int age)
     {
 
     }
-    public void InitializeMember (int age)
+    public static Member CreateMember(string firstName, string lastName, string password, int age)
     {
-        Age = age;
-
-        if (Age < 6)
+        if (age < 6)
         {
             Console.WriteLine("Age must be 6 or above to be a member.");
-            return;
-        }
-        else if (Age < 18)
-        {
-            Console.WriteLine("You must add emergency contact.");
+            return null;
         }
 
-        MemberId = ++account;
-    }
-
-
-
-    public void SetEmergencyContact(string emergencyContact)
-    {
-        if (Age < 18)
+        var newMember = new Member (age)
         {
-            EmergencyContact = emergencyContact;
-            Console.WriteLine("Emergency contact added for member under 18.");
-        }
-        else
-        {
-            Console.WriteLine("Emergency contact is not required for members 18 and older.");
-        }
-    }
+            FirstName = firstName,
+            LastName = lastName,
+            Password = password,
+            Age = age,
+            MemberId = ++account
+        };
 
-    public string GetEmergencyContact()
-    {
-        if (Age < 18)
-        {
-            return EmergencyContact;
-        }
-        else
-        {
-            return "Not Applicable";
-        }
+        return newMember;
     }
 
     

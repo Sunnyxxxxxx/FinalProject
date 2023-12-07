@@ -111,26 +111,20 @@ public class Program
             Console.Write("First Name: ");
             string firstName = Console.ReadLine();
             Console.Write("Last Name: ");
-            string LastName = Console.ReadLine();
+            string lastName = Console.ReadLine();
             Console.Write("Password: ");
             string password = Console.ReadLine();
             Console.WriteLine("Age:");
             int age = Convert.ToInt32(Console.ReadLine());
 
-            
+            var newMember = Member.CreateMember(firstName, lastName, password, age);
 
-            var newMember = new Member (age)
+
+            if (newMember != null)
             {
-                FirstName = firstName,
-                LastName = LastName,
-                Password = password
-            };
-
-            newMember.InitializeMember(age);
-
-            members.members.Add(newMember);
-
-            Console.WriteLine("Profile created!");
+                members.members.Add(newMember);
+                Console.WriteLine($"Profile created! Your Member ID is {newMember.MemberId}.");
+            }
 
         }
     }
