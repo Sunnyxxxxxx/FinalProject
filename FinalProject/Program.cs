@@ -48,7 +48,7 @@ public class Program
                         SignUpMenu();
                         break;
                     case "4":
-                        GetMenu();
+                        MakeTrainerReservation();
                         break;
                     case "c":
                         Console.Clear();
@@ -117,12 +117,16 @@ public class Program
             }
 
         }
-        static void MakeTrainerReservation(Trainers trainers, Sessions sessions, Members members, int authenticatedMemberId)
+        static void MakeTrainerReservation()
         {
             if (authenticatedMember == null)
             {
                 Console.WriteLine("You are not logged in.");
                 return;
+            }
+            foreach (var trainer in Trainers.)
+            {
+                Console.WriteLine($"Trainer ID: {trainer.TrainerId}, Name: {trainer.TrainerName}");
             }
 
         }
