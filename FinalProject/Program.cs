@@ -1,4 +1,5 @@
 ﻿using FinalProject.Model;
+using System.Security.Cryptography.X509Certificates;
 
 namespace FinalProject;
 
@@ -103,6 +104,33 @@ public class Program
         {
             authenticatedMember = null;
             Console.WriteLine("Logged out!");
+        }
+
+        static void SignUpMenu()
+        {
+            Console.Write("First Name: ");
+            string firstName = Console.ReadLine();
+            Console.Write("Last Name: ");
+            string LastName = Console.ReadLine();
+            Console.Write("Password: ");
+            string password = Console.ReadLine();
+            Console.WriteLine("Age:");
+            int age = Convert.ToInt32(Console.ReadLine());
+
+            member.InitializeMember(age);
+
+            var newMember = new Member ()
+            {
+                FirstName = firstName,
+                LastName = LastName,
+                MemberId = memberId,
+                Password = password
+            };
+
+            members.members.Add(newMember);
+
+            Console.WriteLine("Profile created!");
+
         }
     }
 }

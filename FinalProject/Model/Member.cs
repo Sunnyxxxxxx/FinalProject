@@ -18,7 +18,11 @@ public class Member
     private string EmergencyContact { get; set; } 
     private static int account = 1000;
 
-    public Member(int age)
+    public Member()
+    {
+
+    }
+    public void InitializeMember (int age)
     {
         Age = age;
 
@@ -34,6 +38,8 @@ public class Member
 
         MemberId = ++account;
     }
+
+
 
     public void SetEmergencyContact(string emergencyContact)
     {
