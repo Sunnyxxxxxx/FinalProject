@@ -8,6 +8,9 @@ public class Program
     private static Member authenticatedMember;
     private static Members members;
     private static Member member;
+    private static TennisCourts tennisCourts;
+    private static BasketballCourts basketballCourts;
+    private static Reservations reservations;
     static void Main(string[] args)
     {
         Initialize();
@@ -138,8 +141,61 @@ public class Program
                 Console.WriteLine("You are not logged in.");
                 return;
             }
-            
 
-        }
+            Console.Write("Enter your Member ID: ");
+            int memberId;
+            if (!int.TryParse(Console.ReadLine(), out memberId) || memberId != authenticatedMember.MemberId)
+            {
+                Console.WriteLine("Invalid Member ID.");
+                return;
+            }
+
+            Console.WriteLine("Choose court type: 1 for Tennis, 2 for Basketball");
+            int courtType;
+            if (!int.TryParse(Console.ReadLine(), out courtType) || (courtType != 1 && courtType != 2))
+            {
+                Console.WriteLine("Invalid Court Type.");
+                return;
+            }
+
+            Console.Write("Enter Court ID to reserve: ");
+            int courtId;
+            if (!int.TryParse(Console.ReadLine(), out courtId))
+            {
+                Console.WriteLine("Invalid Court ID.");
+                return;
+            }
+
+            Court court = null;
+            if (courtType == 1) // 网球场
+            {
+                if (!tennisCourts.tenniscourts.Any(c => c.CourtID == courtId))
+                {
+                    Console.WriteLine("Invalid Tennis Court ID.");
+                    return;
+                }
+                court = tennisCourts.tenniscourts.First(c => c.CourtID == courtId);
+            }
+            else if (courtType == 2) // 篮球场
+            {
+                if (!basketballCourts.basketballcourts.Any(c => c.CourtID == courtId))
+                {
+                    Console.WriteLine("Invalid Basketball Court ID.");
+                    return;
+                }
+                court = basketballCourts.basketballcourts.First(c => c.CourtID == courtId);
+            }
+
+            Console.Write("Enter reservation date and time (yyyy-mm-dd hh:mm): ");
+            DateTime reservationDate;
+            if (!DateTime.TryParse(Console.ReadLine(), out reservationDate))
+            {
+                Console.WriteLine("Invalid date and time format.");
+                return;
+            }
+
+        reservations.AddCourtReservation(authenticatedMember.MemberId, courtId, reservationDate, court);
+
+    }
 
 }
