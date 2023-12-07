@@ -32,6 +32,6 @@ public class MembershipFee
     }
     private static int GenerateInvoiceNumber()
     {
-        return ++invoiceN; // Increment and return the next invoice number.
+        return ++invoiceCounter; // Increment and return the next invoice number.
     }
 }
