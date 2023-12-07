@@ -6,26 +6,41 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Model
 {
-    public class Member
-    {
-        private static int acount;
-        public string FName { get; set; }
-        public string LName { get; set; }
-        public int Age { get; set; }
-        public int MemberID { get; set; }
-        public int password { get; set; }
-        public int Pnumber { get; set; }
-        public string address { get; set; }
-        public string Gender { get; set; }
-        public int EmergcyC {  get; set; }
-
-
-
         public Member()
+    {
+
+         if (Age < 6)
         {
-            MemberID++;
-            acount = MemberID;
+            Console.WriteLine("Age must be 6 or above to be a member.");
+            return;
+        }
+        else if (Age < 18)
+        {
+            Console.WriteLine("You must add emergency contact");
+        
         }
 
+
+        MemberID = ++account;
+    }
+    public void SetEmergencyContact(string emergencyContact)
+    {
+        if (Age < 18)
+        {
+            EmergencyContact = emergencyContact;
+        
+        }
+
+    }
+    public string GetEmergencyContact()
+    {
+        if (Age < 18)
+        {
+            return EmergencyContact;
+        }
+        else
+        {
+            return "Not Applicable";
+        }
     }
 }
