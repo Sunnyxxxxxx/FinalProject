@@ -12,10 +12,10 @@ public class Trainer
     public int TrainerId { get; set; }
     public string TrainerName { get; set; }
     public int Age { get; set; }
-    public char Gender { get; set; }
+    public string Gender { get; set; }
     public string Type { get; set; }
 
-    public Trainer(int TrainerId, string trainerName)
+    public Trainer(int trainerId, string trainerName, string gender, string type)
     {
         autoIncreament++;
         TrainerId = autoIncreament;
