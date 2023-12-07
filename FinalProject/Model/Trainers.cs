@@ -13,6 +13,14 @@ public class Trainers
 
         public Trainers()
         {
-            trainers = new List<Trainer>();
+            trainers = new List<Trainer>
+            {
+                new Trainer(1, "Trainer1"),
+                new Trainer(2, "Trainer2"),
+                new Trainer(3, "Trainer3"),
+                new Trainer(4, "Trainer4"),
+                new Trainer(5, "Trainer5"),
+                new Trainer(6, "Trainer6")
+            };
         }
     }

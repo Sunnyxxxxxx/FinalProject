@@ -13,4 +13,10 @@ public class Session
     public DateTime StartTime { get; set; }
     public DateTime EndTime { get; set; }
 
+    public Session(int sessionId, string description)
+    {
+        SessionId = sessionId;
+        Description = description;
+    }
+
 }
