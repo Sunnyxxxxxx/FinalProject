@@ -10,29 +10,16 @@ public class Program
     private static Member member;
     static void Main(string[] args)
     {
-     
+
         static void Initialize()
         {
-            var m1 = new Member (21)
-            {
-                FirstName = "Qian",
-                LastName = "Tong",
-                Password = "1234"
-            };
-            var m2 = new Member(22)
-            {
-                FirstName = "Xiayi",
-                LastName = "Wang",
-                Password = "3478"
-            };
-            var m3 = new Member (23)
-            {
-                FirstName = "Jiayang",
-                LastName = "Xu",
-                Password = "1243"
-            };
+            var m1 = Member.CreateMember("Qian", "Tong", "1234", 21);
+            var m2 = Member.CreateMember("Xiayi", "Wang", "3478", 22);
+            var m3 = Member.CreateMember("Jiayang", "Xu", "1243", 23);
+
+            // Here, you can add these members to a Members collection or process them further
         }
-       
+
 
         static void Menu()
         {
