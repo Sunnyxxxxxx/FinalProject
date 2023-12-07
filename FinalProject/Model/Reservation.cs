@@ -5,20 +5,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FinalProject.Model
+namespace FinalProject.Model;
+
+public class Reservation
 {
-    public class Reservation
+    public int ReservationId { get; set; }
+    public DateTime ReservationDate { get; set; }
+    public int MemberId { get; set; }
+    public int courtId { get; set; }
+    private static int Reservationcount;
+    public Reservation()
     {
-        public int ReservationId { get; set; }
-        public DateTime ReservationDate { get; set; }
-        public int MemberId { get; set; }
-        public int courtId { get; set; }
-        private static int Reservationcount;
-        public Reservation()
-        {
-            Reservationcount++;
-            ReservationId = Reservationcount;
-        }
-        
+        Reservationcount++;
+        ReservationId = Reservationcount;
     }
- }
+    
+}
+
