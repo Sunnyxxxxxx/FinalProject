@@ -15,8 +15,17 @@ namespace FinalProject.Model
             courtReservations = new List<Reservation>();
         }
 
-        public void AddCourtReservation(Reservation reservation, Court court)
+        public void AddCourtReservation(int memberId, int courtId, DateTime reservationDate, Court court)
         {
+            // 创建新的预约实例
+            var reservation = new Reservation
+            {
+                MemberId = memberId,
+                CourtId = courtId,
+                ReservationDate = reservationDate
+            };
+
+            // 检查预约时间是否在球场开放时间内
             if (reservation.IsWithinCourtHours(court))
             {
                 courtReservations.Add(reservation);

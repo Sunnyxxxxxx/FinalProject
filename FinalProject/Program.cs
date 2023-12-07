@@ -130,5 +130,16 @@ public class Program
             }
 
         }
-    
+
+        static void MakeCourtReservation()
+        {
+            if (authenticatedMember == null)
+            {
+                Console.WriteLine("You are not logged in.");
+                return;
+            }
+            
+
+        }
+
 }
