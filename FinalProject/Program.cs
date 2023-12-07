@@ -6,7 +6,7 @@ namespace FinalProject;
 public class Program
 {
     private static Member authenticatedMember;
-    private static Members members = new Members();
+    private static Members members;
     private static Member member;
     private static TennisCourts tennisCourts;
     private static BasketballCourts basketballCourts;
@@ -14,16 +14,15 @@ public class Program
     static void Main(string[] args)
     {
         Initialize();
+        Console.WriteLine("Welcome to Fitness Center! Thank you for choosing us.");
         Menu();
     }
 
         static void Initialize()
         {
-            var m1 = Member.CreateMember("Qian", "Tong", "1234", 21);
-            var m2 = Member.CreateMember("Xiayi", "Wang", "3478", 22);
-            var m3 = Member.CreateMember("Jiayang", "Xu", "1243", 23);
+            members = new Members();
+            reservations = new Reservations();
 
-            // Here, you can add these members to a Members collection or process them further
         }
 
 
@@ -33,8 +32,6 @@ public class Program
 
             while (!done)
             {
-                Console.WriteLine("Welcome to Fitness Center! Thank you for choosing us.");
-                Console.WriteLine("Please log in to your account.");
                 Console.WriteLine("Options: Login: 1 --- Logout: 2 --- Sign Up: 3 --- Reservation: 4 --- Clear Screen: c --- Quit: q ---");
                 Console.Write("Choice: ");
                 string choice = Console.ReadLine();
@@ -137,7 +134,7 @@ public class Program
                 return;
             }
 
-            Console.WriteLine("Choose court type: 1 for Tennis, 2 for Basketball");
+            Console.WriteLine("Choose court type (1 for Basketball; 2 for Tennis;):");
             int courtType;
             if (!int.TryParse(Console.ReadLine(), out courtType) || (courtType != 1 && courtType != 2))
             {
@@ -145,7 +142,7 @@ public class Program
                 return;
             }
 
-            Console.Write("Enter Court ID to reserve: ");
+            Console.Write("Enter Court ID to reserve (1,2,3,4 for Basketball; 5,6,7,8,9,10 for Tennis;): ");
             int courtId;
             if (!int.TryParse(Console.ReadLine(), out courtId))
             {
@@ -183,26 +180,28 @@ public class Program
                 Console.WriteLine("Invalid date and time format.");
                 return;
             }
-        // Check if 'reservations' is null
-        if (reservations == null)
-        {
-            Console.WriteLine("Reservations object is not initialized.");
-            return;
-        }
 
-        // Check if 'authenticatedMember' is null
-        if (authenticatedMember == null)
-        {
-            Console.WriteLine("Authenticated member is not set.");
-            return;
-        }
+            // Check if 'reservations' is null
+            if (reservations == null)
+            {
+                Console.WriteLine("Reservations object is not initialized.");
+                return;
+            }
 
-        // Check if 'court' is null
-        if (court == null)
-        {
-            Console.WriteLine("Court object is not set.");
-            return;
-        }
+            // Check if 'authenticatedMember' is null
+            if (authenticatedMember == null)
+            {
+                Console.WriteLine("Authenticated member is not set.");
+                return;
+            }
+
+            // Check if 'court' is null
+            if (court == null)
+            {
+                Console.WriteLine("Court object is not set.");
+                return;
+            }
+
         reservations.AddCourtReservation(authenticatedMember.MemberId, courtId, reservationDate, court);
 
     }
