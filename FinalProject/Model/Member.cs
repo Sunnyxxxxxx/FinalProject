@@ -18,7 +18,7 @@ public class Member
     private string EmergencyContact { get; set; } 
     private static int account = 1000;
 
-    public Member()
+    public Member(int age)
     {
 
     }

@@ -117,15 +117,16 @@ public class Program
             Console.WriteLine("Age:");
             int age = Convert.ToInt32(Console.ReadLine());
 
-            member.InitializeMember(age);
+            
 
-            var newMember = new Member ()
+            var newMember = new Member (age)
             {
                 FirstName = firstName,
                 LastName = LastName,
-                MemberId = memberId,
                 Password = password
             };
+
+            newMember.InitializeMember(age);
 
             members.members.Add(newMember);
 
