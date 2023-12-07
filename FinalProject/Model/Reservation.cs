@@ -19,6 +19,11 @@ public class Reservation
         Reservationcount++;
         ReservationId = Reservationcount;
     }
-    
+
+    public bool IsWithinCourtHours(Court court)
+    {
+        return ReservationDate.TimeOfDay >= court.OpeningTime && ReservationDate.TimeOfDay <= court.ClosingTime;
+    }
+
 }
 

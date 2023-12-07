@@ -10,6 +10,9 @@ public class Program
     private static Member member;
     static void Main(string[] args)
     {
+        Initialize();
+        Menu();
+    }
 
         static void Initialize()
         {
@@ -123,5 +126,5 @@ public class Program
             }
 
         }
-    }
+    
 }
