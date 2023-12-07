@@ -7,18 +7,18 @@ using static FinalProject.Model.Courts;
 
 namespace FinalProject.Model
 {
-    public class TennisCourts : Courts<TennisCourt>
+    public class TennisCourts : AllCourts<TennisCourt>
     {
         public TennisCourts()
         {
             CourtsList = new List<TennisCourt>
             {
-                new TennisCourt(1, "TennisCourt1"),
-                new TennisCourt(2, "TennisCourt2"),
-                new TennisCourt(3, "TennisCourt3"),
-                new TennisCourt(4, "TennisCourt4"),
-                new TennisCourt(5, "TennisCourt5"),
-                new TennisCourt(6, "TennisCourt6")
+                new TennisCourt(5, "TennisCourt1"),
+                new TennisCourt(6, "TennisCourt2"),
+                new TennisCourt(7, "TennisCourt3"),
+                new TennisCourt(8, "TennisCourt4"),
+                new TennisCourt(9, "TennisCourt5"),
+                new TennisCourt(10, "TennisCourt6")
             };
 
         }

@@ -8,11 +8,11 @@ namespace FinalProject.Model
 {
     public class Courts
     {
-        public class Courts<T> where T : Court
+        public class AllCourts<T> where T : Court
         {
             public List<T> CourtsList { get; set; }
 
-            public Courts()
+            public AllCourts()
             {
                 CourtsList = new List<T>();
             }

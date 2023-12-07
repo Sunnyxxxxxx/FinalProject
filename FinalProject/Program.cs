@@ -154,33 +154,55 @@ public class Program
             }
 
             Court court = null;
-            if (courtType == 1) // 网球场
-            {
-                if (!tennisCourts.tenniscourts.Any(c => c.CourtID == courtId))
-                {
-                    Console.WriteLine("Invalid Tennis Court ID.");
-                    return;
-                }
-                court = tennisCourts.tenniscourts.First(c => c.CourtID == courtId);
-            }
-            else if (courtType == 2) // 篮球场
-            {
-                if (!basketballCourts.basketballcourts.Any(c => c.CourtID == courtId))
-                {
-                    Console.WriteLine("Invalid Basketball Court ID.");
-                    return;
-                }
-                court = basketballCourts.basketballcourts.First(c => c.CourtID == courtId);
-            }
 
-            Console.Write("Enter reservation date and time (yyyy-mm-dd hh:mm): ");
+        if (courtType == 1) // 网球场
+        {
+            var tennisCourts = new TennisCourts();
+            if (!tennisCourts.CourtsList.Any(c => c.CourtID == courtId))
+            {
+                Console.WriteLine("Invalid Tennis Court ID.");
+                return;
+            }
+            court = tennisCourts.CourtsList.First(c => c.CourtID == courtId);
+        }
+        else if (courtType == 2) // 篮球场
+        {
+            var basketballCourts = new BasketballCourts();
+            if (!basketballCourts.CourtsList.Any(c => c.CourtID == courtId))
+            {
+                Console.WriteLine("Invalid Basketball Court ID.");
+                return;
+            }
+            court = basketballCourts.CourtsList.First(c => c.CourtID == courtId);
+        }
+
+        Console.Write("Enter reservation date and time (yyyy-mm-dd hh:mm): ");
             DateTime reservationDate;
             if (!DateTime.TryParse(Console.ReadLine(), out reservationDate))
             {
                 Console.WriteLine("Invalid date and time format.");
                 return;
             }
+        // Check if 'reservations' is null
+        if (reservations == null)
+        {
+            Console.WriteLine("Reservations object is not initialized.");
+            return;
+        }
 
+        // Check if 'authenticatedMember' is null
+        if (authenticatedMember == null)
+        {
+            Console.WriteLine("Authenticated member is not set.");
+            return;
+        }
+
+        // Check if 'court' is null
+        if (court == null)
+        {
+            Console.WriteLine("Court object is not set.");
+            return;
+        }
         reservations.AddCourtReservation(authenticatedMember.MemberId, courtId, reservationDate, court);
 
     }

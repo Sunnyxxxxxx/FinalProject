@@ -7,7 +7,7 @@ using static FinalProject.Model.Courts;
 
 namespace FinalProject.Model
 {
-    public class BasketballCourts: Courts<BasketballCourt>
+    public class BasketballCourts: AllCourts<BasketballCourt>
     {
         public BasketballCourts()
         {
