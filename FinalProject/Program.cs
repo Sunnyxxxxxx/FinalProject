@@ -77,19 +77,20 @@ public class Program
         {
             if (authenticatedMember == null)
             {
-                Console.Write("Enter your MemberId: ");
-                int MemberId = Convert.ToInt32 (Console.ReadLine());
+                Console.Write("Enter your member Id: ");
+                string MemberIdInput = Console.ReadLine();
+                int memberId = Convert.ToInt32 (MemberIdInput);
                 Console.Write("Enter your password: ");
-                string Password = Console.ReadLine();
+                string password = Console.ReadLine();
 
-                authenticatedMember = Member.Authenticate(MemberId, Password);
+                authenticatedMember = members.Authenticate(memberId, password);
                 if (authenticatedMember != null)
                 {
                     Console.WriteLine($"Welcome {authenticatedMember.FirstName}");
                 }
                 else
                 {
-                    Console.WriteLine("invalid username or password");
+                    Console.WriteLine("invalid member Id or password");
                 }
             }
             else
