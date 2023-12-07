@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static FinalProject.Model.Courts;
 
 namespace FinalProject.Model
 {
-    public class BasketballCourts
+    public class BasketballCourts: Courts<BasketballCourt>
     {
-        public List<BasketballCourt> basketballcourts { get; set; }
-
         public BasketballCourts()
         {
-            basketballcourts = new List<BasketballCourt>
+            CourtsList = new List<BasketballCourt>
             {
                 new BasketballCourt(1, "BasketballCourt1"),
                 new BasketballCourt(2, "BasketballCourt2"),
@@ -20,7 +19,6 @@ namespace FinalProject.Model
                 new BasketballCourt(4, "BasketballCourt4")
             };
         }
-
 
     }
 }
