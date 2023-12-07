@@ -11,7 +11,8 @@ namespace FinalProject.Model;
 public class Member
 {
     public int MemberId { get; set; }
-    public string Name { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
     public int Age { get; set; }
     public string Password { get; set; }
     private string EmergencyContact { get; set; } 

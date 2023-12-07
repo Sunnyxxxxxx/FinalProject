@@ -1,12 +1,107 @@
-﻿namespace FinalProject;
+﻿using FinalProject.Model;
+
+namespace FinalProject;
 
 public class Program
 {
+    private static Member authenticatedMember;
+    private static Members members;
+    private static Member member;
     static void Main(string[] args)
     {
-        Console.WriteLine("Welcome to Fitness Center! Thank you for choosing us.");
-        Console.WriteLine("Please log in to your account.");
+     
+        static void Initialize()
+        {
+            var m1 = new Member (21)
+            {
+                FirstName = "Qian",
+                LastName = "Tong",
+                Password = "1234"
+            };
+            var m2 = new Member(22)
+            {
+                FirstName = "Xiayi",
+                LastName = "Wang",
+                Password = "3478"
+            };
+            var m3 = new Member (23)
+            {
+                FirstName = "Jiayang",
+                LastName = "Xu",
+                Password = "1243"
+            };
+        }
+       
 
+        static void Menu()
+        {
+            bool done = false;
 
+            while (!done)
+            {
+                Console.WriteLine("Welcome to Fitness Center! Thank you for choosing us.");
+                Console.WriteLine("Please log in to your account.");
+                Console.WriteLine("Options: Login: 1 --- Logout: 2 --- Sign Up: 3 --- Reservation: 4 --- Clear Screen: c --- Quit: q ---");
+                Console.Write("Choice: ");
+                string choice = Console.ReadLine();
+
+                switch (choice)
+                {
+                    case "1":
+                        LoginMenu();
+                        break;
+                    case "2":
+                        LogoutMenu();
+                        break;
+                    case "3":
+                        SignUpMenu();
+                        break;
+                    case "4":
+                        GetMenu();
+                        break;
+                    case "c":
+                        Console.Clear();
+                        break;
+                    case "q":
+                        done = true;
+                        break;
+                    default:
+                        Console.WriteLine("Invalid command!");
+                        break;
+                }
+
+            }
+        }
+
+        static void LoginMenu()
+        {
+            if (authenticatedMember == null)
+            {
+                Console.Write("Enter your MemberId: ");
+                int MemberId = Convert.ToInt32 (Console.ReadLine());
+                Console.Write("Enter your password: ");
+                string Password = Console.ReadLine();
+
+                authenticatedMember = Member.Authenticate(MemberId, Password);
+                if (authenticatedMember != null)
+                {
+                    Console.WriteLine($"Welcome {authenticatedMember.FirstName}");
+                }
+                else
+                {
+                    Console.WriteLine("invalid username or password");
+                }
+            }
+            else
+            {
+                Console.WriteLine($"You are already logged in as {authenticatedMember.MemberId}");
+            }
+        }
+
+        static void LogoutMenu()
+        {
+            authenticatedMember = null;
+            Console.WriteLine("Logged out!");
+        }
     }
 }
