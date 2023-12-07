@@ -6,7 +6,7 @@ namespace FinalProject;
 public class Program
 {
     private static Member authenticatedMember;
-    private static Members members;
+    private static Members members = new Members();
     private static Member member;
     private static TennisCourts tennisCourts;
     private static BasketballCourts basketballCourts;
@@ -51,7 +51,7 @@ public class Program
                         SignUpMenu();
                         break;
                     case "4":
-                        MakeTrainerReservation();
+                        MakeCourtReservation();
                         break;
                     case "c":
                         Console.Clear();
@@ -117,19 +117,6 @@ public class Program
             {
                 members.members.Add(newMember);
                 Console.WriteLine($"Profile created! Your Member ID is {newMember.MemberId}.");
-            }
-
-        }
-        static void MakeTrainerReservation()
-        {
-            if (authenticatedMember == null)
-            {
-                Console.WriteLine("You are not logged in.");
-                return;
-            }
-            foreach (var trainer in Trainers.)
-            {
-                Console.WriteLine($"Trainer ID: {trainer.TrainerId}, Name: {trainer.TrainerName}");
             }
 
         }
