@@ -8,17 +8,20 @@ namespace FinalProject.Model;
 
 public class Sessions
 {
-    public List <Session> sessions { get; set; }
+    public List<Session> sessions { get; set; }
+
     public Sessions()
     {
-        sessions = new List<Session>
-            {
-                new Session(1, "Session1"),
-                new Session(2, "Session2"),
-                new Session(3, "Session3"),
-                new Session(4, "Session4"),
-                new Session(5, "Session5"),
-                new Session(6, "Session6")
-            };
+        sessions = new List<Session>();
+    }
+
+    public void AddSession(Session session)
+    {
+        sessions.Add(session);
+    }
+
+    public List<Session> GetSessionsByMemberId(int memberId)
+    {
+        return sessions.Where(s => s.MemberId == memberId).ToList();
     }
 }
