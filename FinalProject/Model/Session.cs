@@ -8,15 +8,15 @@ namespace FinalProject.Model;
 
 public class Session
 {
-    public int SessionId { get; set; }
-    public string Description { get; set; }
-    public DateTime StartTime { get; set; }
-    public DateTime EndTime { get; set; }
+    public DateTime SessionDate { get; set; }
+    public int MemberId { get; set; }
+    public int TrainerId { get; set; }
 
-    public Session(int sessionId, string description)
+    public Session(DateTime sessionDate, int memberId, int trainerId)
     {
-        SessionId = sessionId;
-        Description = description;
+        SessionDate = sessionDate;
+        MemberId = memberId;
+        TrainerId = trainerId;
     }
 
 }

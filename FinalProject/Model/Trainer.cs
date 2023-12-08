@@ -8,7 +8,6 @@ namespace FinalProject.Model;
 
 public class Trainer
 {
-    private static int autoIncreament;
     public int TrainerId { get; set; }
     public string TrainerName { get; set; }
     public int Age { get; set; }
@@ -17,7 +16,9 @@ public class Trainer
 
     public Trainer(int trainerId, string trainerName, string gender, string type)
     {
-        autoIncreament++;
-        TrainerId = autoIncreament;
+        TrainerId = trainerId;
+        TrainerName = trainerName;
+        Gender = gender;
+        Type = type;
     }
 }

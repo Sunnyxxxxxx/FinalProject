@@ -51,6 +51,9 @@ public class Program
                     case "4":
                         MakeCourtReservation();
                         break;
+                    case "5":
+                        MakeSessionReservation();
+                        break;
                     case "c":
                         Console.Clear();
                         break;
@@ -202,6 +205,11 @@ public class Program
             }
         }
 
-    
+        public static void MakeSessionReservation()
+        {
+            
+        }
+
+
 
 }
