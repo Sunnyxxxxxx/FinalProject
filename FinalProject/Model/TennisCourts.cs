@@ -8,9 +8,9 @@ using static FinalProject.Model.Courts;
 namespace FinalProject.Model
 {
     public class TennisCourts : AllCourts<TennisCourt>
-    {
+    {//class aggreates all basketball courts in to a list
         public TennisCourts()
-        {
+        {// constructor that creates a list of predefined tennis courts.
             CourtsList = new List<TennisCourt>
             {
                 new TennisCourt(5, "TennisCourt1"),

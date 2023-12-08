@@ -9,15 +9,14 @@ namespace FinalProject.Model
     public class Courts
     {
         public class AllCourts<T> where T : Court
-        {
+        {//the allcourts generic provides a list to mannage court objects that inherit from the court class and list that stores the collection
             public List<T> CourtsList { get; set; }
 
-            public AllCourts()
+            public AllCourts()//constructor that initializes the courtslist as ann empty list ready to store court objects
             {
                 CourtsList = new List<T>();
             }
 
-            // 这里可以添加更多通用的方法和属性
         }
 
     }
