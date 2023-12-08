@@ -127,6 +127,8 @@ public class Program
                 return;
             }
 
+            ShowMemberReservations();
+
             Console.WriteLine("Choose court type (1 for Basketball; 2 for Tennis;):");
             int courtType;
             if (!int.TryParse(Console.ReadLine(), out courtType) || (courtType != 1 && courtType != 2))
@@ -145,28 +147,28 @@ public class Program
 
             Court court = null;
 
-        if (courtType == 1) // 网球场
-        {
-            var basketballCourts = new BasketballCourts();
-            if (!basketballCourts.CourtsList.Any(c => c.CourtID == courtId))
+            if (courtType == 1) // 网球场
             {
-                Console.WriteLine("Invalid Basketball Court ID.");
-                return;
+                var basketballCourts = new BasketballCourts();
+                if (!basketballCourts.CourtsList.Any(c => c.CourtID == courtId))
+                {
+                    Console.WriteLine("Invalid Basketball Court ID.");
+                    return;
+                }
+                court = basketballCourts.CourtsList.First(c => c.CourtID == courtId);
             }
-            court = basketballCourts.CourtsList.First(c => c.CourtID == courtId);
-        }
-        else if (courtType == 2) // 篮球场
-        {
-            var tennisCourts = new TennisCourts();
-            if (!tennisCourts.CourtsList.Any(c => c.CourtID == courtId))
+            else if (courtType == 2) // 篮球场
             {
-                Console.WriteLine("Invalid Tennis Court ID.");
-                return;
+                var tennisCourts = new TennisCourts();
+                if (!tennisCourts.CourtsList.Any(c => c.CourtID == courtId))
+                {
+                    Console.WriteLine("Invalid Tennis Court ID.");
+                    return;
+                }
+                court = tennisCourts.CourtsList.First(c => c.CourtID == courtId);
             }
-            court = tennisCourts.CourtsList.First(c => c.CourtID == courtId);
-        }
 
-        Console.Write("Enter reservation date and time (yyyy-mm-dd hh:mm): ");
+            Console.Write("Enter reservation date and time (yyyy-mm-dd hh:mm): ");
             DateTime reservationDate;
             if (!DateTime.TryParse(Console.ReadLine(), out reservationDate))
             {
@@ -174,11 +176,17 @@ public class Program
                 return;
             }
 
-        
-
-        if (reservations.AddCourtReservation(authenticatedMember.MemberId, courtId, reservationDate, court))
+            if (reservations.AddCourtReservation(authenticatedMember.MemberId, courtId, reservationDate, court))
+            {
+                ShowMemberReservations();
+            }
+            else
+            {
+                Console.WriteLine("Reservation failed.");
+            }
+        }
+        public static void ShowMemberReservations()
         {
-            // 显示用户的所有预订
             var memberReservations = reservations.GetReservationsByMemberId(authenticatedMember.MemberId);
             if (memberReservations.Count > 0)
             {
@@ -190,14 +198,10 @@ public class Program
             }
             else
             {
-                Console.WriteLine("You have no other reservations.");
+                Console.WriteLine("You have no reservations.");
             }
         }
-        else
-        {
-            Console.WriteLine("Reservation failed.");
-        }
 
-    }
+    
 
 }
