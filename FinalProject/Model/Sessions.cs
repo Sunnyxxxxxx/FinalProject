@@ -24,4 +24,28 @@ public class Sessions
     {
         return sessions.Where(s => s.MemberId == memberId).ToList();
     }
+
+    public bool AddSessionReservation(int memberId, int trainerId, DateTime sessionDate, List<Trainer> trainers)
+    {
+        // Find the trainer by ID
+        var trainer = trainers.FirstOrDefault(t => t.TrainerId == trainerId);
+        if (trainer == null || !trainer.IsAvailableAt(sessionDate))
+        {
+            Console.WriteLine("Trainer is not available at this time.");
+            return false; // Trainer not found or not available
+        }
+
+        // Check for time conflicts with existing sessions
+        bool hasConflict = sessions.Any(s => s.TrainerId == trainerId && s.SessionDate == sessionDate);
+        if (hasConflict)
+        {
+            Console.WriteLine("Time conflict with another session.");
+            return false;
+        }
+
+        // Add the new session
+        var newSession = new Session(sessionDate, memberId, trainerId);
+        sessions.Add(newSession);
+        return true;
+    }
 }

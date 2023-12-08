@@ -6,11 +6,19 @@ namespace FinalProject;
 public class Program
 {
     private static Member authenticatedMember;
-    private static Members members;
     private static Member member;
+    private static Members members;
+    private static TennisCourt tennisCourt;
     private static TennisCourts tennisCourts;
+    private static BasketballCourt basketballCourt;
     private static BasketballCourts basketballCourts;
+    private static Reservation reservation;
     private static Reservations reservations;
+    private static Trainer trainer;
+    private static Trainers trainers;
+    private static Session session;
+    private static Sessions sessions;
+
     static void Main(string[] args)
     {
         Initialize();
@@ -23,8 +31,9 @@ public class Program
         {
             members = new Members();
             reservations = new Reservations();
-
-        }
+            trainers = new Trainers();
+            sessions = new Sessions();
+    }
 
 
         static void Menu()
@@ -33,7 +42,7 @@ public class Program
 
             while (!done)
             {
-                Console.WriteLine("Options: Login: 1 --- Logout: 2 --- Sign Up: 3 --- Reservation: 4 --- Clear Screen: c --- Quit: q ---");
+                Console.WriteLine("Options: Login: 1 --- Logout: 2 --- Sign Up: 3 --- CourtReservation: 4 --- SessionReservation: 5 --- Clear Screen: c --- Quit: q ---");
                 Console.Write("Choice: ");
                 string choice = Console.ReadLine();
 
@@ -207,8 +216,43 @@ public class Program
 
         public static void MakeSessionReservation()
         {
-            
+            if (authenticatedMember == null)
+            {
+                Console.WriteLine("You are not logged in.");
+                return;
+            }
+
+        Console.WriteLine("Available Trainers:");
+        foreach (var trainer in trainers.trainers)
+        {
+            Console.WriteLine($"ID: {trainer.TrainerId}, Name: {trainer.TrainerName}, Specialty: {trainer.Type}");
         }
+
+        Console.Write("Enter the ID of the trainer you want to book: ");
+        if (!int.TryParse(Console.ReadLine(), out int trainerId) || !trainers.trainers.Any(t => t.TrainerId == trainerId))
+        {
+            Console.WriteLine("Invalid Trainer ID.");
+            return;
+        }
+
+        Console.Write("Enter the date and time for your session (yyyy-mm-dd hh:mm): ");
+        if (!DateTime.TryParse(Console.ReadLine(), out DateTime sessionDate))
+        {
+            Console.WriteLine("Invalid date and time format.");
+            return;
+        }
+
+        if (sessions.AddSessionReservation(authenticatedMember.MemberId, trainerId, sessionDate, trainers.trainers))
+        {
+            Console.WriteLine("Session reservation successful!");
+        }
+        else
+        {
+            Console.WriteLine("Reservation failed. Please check the trainer's availability.");
+        }
+
+
+    }
 
 
 
