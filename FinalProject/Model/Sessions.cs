@@ -25,23 +25,27 @@ public class Sessions
         return sessions.Where(s => s.MemberId == memberId).ToList();
     }
 
-    public bool AddSessionReservation(int memberId, int trainerId, DateTime sessionDate)
+    public bool AddSessionReservation(int memberId, int trainerId, DateTime sessionDate, List<Trainer> trainers)
     {
-        // 检查是否存在时间冲突
+        // Find the trainer by ID
+        var trainer = trainers.FirstOrDefault(t => t.TrainerId == trainerId);
+        if (trainer == null || !trainer.IsAvailableAt(sessionDate))
+        {
+            Console.WriteLine("Trainer is not available at this time.");
+            return false; // Trainer not found or not available
+        }
+
+        // Check for time conflicts with existing sessions
         bool hasConflict = sessions.Any(s => s.TrainerId == trainerId && s.SessionDate == sessionDate);
         if (hasConflict)
         {
-            return false; // 如果有冲突，则返回 false
+            Console.WriteLine("Time conflict with another session.");
+            return false;
         }
 
-        var newSession = new Session (sessionDate,memberId, trainerId)
-        {
-            MemberId = memberId,
-            TrainerId = trainerId,
-            SessionDate = sessionDate
-        };
-
+        // Add the new session
+        var newSession = new Session(sessionDate, memberId, trainerId);
         sessions.Add(newSession);
-        return true; // 如果没有冲突，则添加会话并返回 true
+        return true;
     }
 }

@@ -18,6 +18,7 @@ public class Program
     private static Trainers trainers;
     private static Session session;
     private static Sessions sessions;
+
     static void Main(string[] args)
     {
         Initialize();
@@ -241,13 +242,13 @@ public class Program
             return;
         }
 
-        if (sessions.AddSessionReservation(authenticatedMember.MemberId, trainerId, sessionDate))
+        if (sessions.AddSessionReservation(authenticatedMember.MemberId, trainerId, sessionDate, trainers.trainers))
         {
             Console.WriteLine("Session reservation successful!");
         }
         else
         {
-            Console.WriteLine("Reservation failed. The trainer might be unavailable at this time.");
+            Console.WriteLine("Reservation failed. Please check the trainer's availability.");
         }
 
 

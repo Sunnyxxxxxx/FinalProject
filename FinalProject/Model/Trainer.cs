@@ -13,6 +13,8 @@ public class Trainer
     public int Age { get; set; }
     public string Gender { get; set; }
     public string Type { get; set; }
+    public TimeSpan WorkStartTime { get; set; }
+    public TimeSpan WorkingEndTime { get; set; }
 
     public Trainer(int trainerId, string trainerName, string gender, string type)
     {
@@ -20,5 +22,13 @@ public class Trainer
         TrainerName = trainerName;
         Gender = gender;
         Type = type;
+        WorkStartTime = new TimeSpan(6, 0, 0); // 6 AM
+        WorkingEndTime = new TimeSpan(22, 0, 0); // 10 PM
+    }
+
+    public bool IsAvailableAt(DateTime sessionDate)
+    {
+        TimeSpan sessionTime = sessionDate.TimeOfDay;
+        return sessionTime >= WorkStartTime && sessionTime <= WorkingEndTime;
     }
 }
