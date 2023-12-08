@@ -6,18 +6,21 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Model
 {
+    // Declare the Reservations class
     public class Reservations
     {
+        // A private field to store the list of court reservations.
         private List<Reservation> courtReservations;
 
+        // Constructor for the Reservations class, initializing the courtReservations list.
         public Reservations()
         {
             courtReservations = new List<Reservation>();
         }
-
+        // Method to add a court reservation with memberId, CourtID, reservationDate, and court.
         public bool AddCourtReservation(int memberId, int courtId, DateTime reservationDate, Court court)
         {
-            // 创建新的预约实例
+            // Create a new Reservation with memberId, courtId, and reservationDate.
             var reservation = new Reservation
             {
                 MemberId = memberId,
@@ -25,7 +28,7 @@ namespace FinalProject.Model
                 ReservationDate = reservationDate
             };
 
-            // 检查预约时间是否在球场开放时间内
+            // Check if the reservation time is within the open time of the court.
             if (reservation.IsWithinCourtHours(court))
             {
                 courtReservations.Add(reservation);
@@ -39,6 +42,7 @@ namespace FinalProject.Model
             }
         }
 
+        // Method to retrieve a list of reservations for a specific member.
         public List<Reservation> GetReservationsByMemberId(int memberId)
         {
             return courtReservations.Where(r => r.MemberId == memberId).ToList();
