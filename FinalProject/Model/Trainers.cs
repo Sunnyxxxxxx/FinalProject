@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 using static FinalProject.Model.Trainers;
 
 namespace FinalProject.Model;
-
+// Declare a Trainers class
 public class Trainers
     {
+        // A property to store a list of trainers.
         public List <Trainer> trainers { get; set; }
 
+        // A constructor for the Trainers class and set the trainer list.
         public Trainers()
         {
+
             trainers = new List<Trainer>
             {
                 new Trainer(1, "Trainer1", "Female", "Basketball"),

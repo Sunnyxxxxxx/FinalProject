@@ -6,25 +6,29 @@ using System.Threading.Tasks;
 
 namespace FinalProject.Model;
 
+// Declare a Sessions class
 public class Sessions
 {
+    // A property to store a list of sessions.
     public List<Session> sessions { get; set; }
 
+    // A constructor for the Sessions class and set the session list.
     public Sessions()
     {
         sessions = new List<Session>();
     }
-
+    //Add new session to session list.
     public void AddSession(Session session)
     {
         sessions.Add(session);
     }
-
+    //Get a list of sessions by memberId.
     public List<Session> GetSessionsByMemberId(int memberId)
     {
         return sessions.Where(s => s.MemberId == memberId).ToList();
     }
 
+    //Add a new sessionn reservation based on trainer avaliable time.
     public bool AddSessionReservation(int memberId, int trainerId, DateTime sessionDate, List<Trainer> trainers)
     {
         // Find the trainer by ID
