@@ -15,6 +15,7 @@ public class Program
     {
         Initialize();
         Console.WriteLine("Welcome to Fitness Center! Thank you for choosing us.");
+        Console.WriteLine("We are open from 6am to 10pm.");
         Menu();
     }
 
@@ -126,14 +127,6 @@ public class Program
                 return;
             }
 
-            Console.Write("Enter your Member ID: ");
-            int memberId;
-            if (!int.TryParse(Console.ReadLine(), out memberId) || memberId != authenticatedMember.MemberId)
-            {
-                Console.WriteLine("Invalid Member ID.");
-                return;
-            }
-
             Console.WriteLine("Choose court type (1 for Basketball; 2 for Tennis;):");
             int courtType;
             if (!int.TryParse(Console.ReadLine(), out courtType) || (courtType != 1 && courtType != 2))
@@ -154,16 +147,6 @@ public class Program
 
         if (courtType == 1) // 网球场
         {
-            var tennisCourts = new TennisCourts();
-            if (!tennisCourts.CourtsList.Any(c => c.CourtID == courtId))
-            {
-                Console.WriteLine("Invalid Tennis Court ID.");
-                return;
-            }
-            court = tennisCourts.CourtsList.First(c => c.CourtID == courtId);
-        }
-        else if (courtType == 2) // 篮球场
-        {
             var basketballCourts = new BasketballCourts();
             if (!basketballCourts.CourtsList.Any(c => c.CourtID == courtId))
             {
@@ -172,33 +155,22 @@ public class Program
             }
             court = basketballCourts.CourtsList.First(c => c.CourtID == courtId);
         }
+        else if (courtType == 2) // 篮球场
+        {
+            var tennisCourts = new TennisCourts();
+            if (!tennisCourts.CourtsList.Any(c => c.CourtID == courtId))
+            {
+                Console.WriteLine("Invalid Tennis Court ID.");
+                return;
+            }
+            court = tennisCourts.CourtsList.First(c => c.CourtID == courtId);
+        }
 
         Console.Write("Enter reservation date and time (yyyy-mm-dd hh:mm): ");
             DateTime reservationDate;
             if (!DateTime.TryParse(Console.ReadLine(), out reservationDate))
             {
                 Console.WriteLine("Invalid date and time format.");
-                return;
-            }
-
-            // Check if 'reservations' is null
-            if (reservations == null)
-            {
-                Console.WriteLine("Reservations object is not initialized.");
-                return;
-            }
-
-            // Check if 'authenticatedMember' is null
-            if (authenticatedMember == null)
-            {
-                Console.WriteLine("Authenticated member is not set.");
-                return;
-            }
-
-            // Check if 'court' is null
-            if (court == null)
-            {
-                Console.WriteLine("Court object is not set.");
                 return;
             }
 
