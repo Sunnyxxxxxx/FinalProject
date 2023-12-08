@@ -174,7 +174,29 @@ public class Program
                 return;
             }
 
-        reservations.AddCourtReservation(authenticatedMember.MemberId, courtId, reservationDate, court);
+        
+
+        if (reservations.AddCourtReservation(authenticatedMember.MemberId, courtId, reservationDate, court))
+        {
+            // 显示用户的所有预订
+            var memberReservations = reservations.GetReservationsByMemberId(authenticatedMember.MemberId);
+            if (memberReservations.Count > 0)
+            {
+                Console.WriteLine("Your current reservations:");
+                foreach (var reservation in memberReservations)
+                {
+                    Console.WriteLine($"- Court ID: {reservation.CourtId}, Date: {reservation.ReservationDate}");
+                }
+            }
+            else
+            {
+                Console.WriteLine("You have no other reservations.");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Reservation failed.");
+        }
 
     }
 

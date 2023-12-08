@@ -9,16 +9,9 @@ namespace FinalProject.Model;
 
 public class Reservation
 {
-    public int ReservationId { get; set; }
     public DateTime ReservationDate { get; set; }
     public int MemberId { get; set; }
     public int CourtId { get; set; }
-    private static int Reservationcount;
-    public Reservation()
-    {
-        Reservationcount++;
-        ReservationId = Reservationcount;
-    }
 
     public bool IsWithinCourtHours(Court court)
     {

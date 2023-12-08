@@ -15,7 +15,7 @@ namespace FinalProject.Model
             courtReservations = new List<Reservation>();
         }
 
-        public void AddCourtReservation(int memberId, int courtId, DateTime reservationDate, Court court)
+        public bool AddCourtReservation(int memberId, int courtId, DateTime reservationDate, Court court)
         {
             // 创建新的预约实例
             var reservation = new Reservation
@@ -30,10 +30,12 @@ namespace FinalProject.Model
             {
                 courtReservations.Add(reservation);
                 Console.WriteLine("Reservation added successfully.");
+                return true;
             }
             else
             {
                 Console.WriteLine("Reservation time is outside court hours.");
+                return false;
             }
         }
 
