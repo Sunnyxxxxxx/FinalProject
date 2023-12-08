@@ -7,10 +7,10 @@ using static FinalProject.Model.Courts;
 
 namespace FinalProject.Model
 {
-    public class BasketballCourts: AllCourts<BasketballCourt>
+    public class BasketballCourts: AllCourts<BasketballCourt>//class aggreates all basketball courts in to a list
     {
         public BasketballCourts()
-        {
+        {// constructor that creates a list of predefined basketball courts.
             CourtsList = new List<BasketballCourt>
             {
                 new BasketballCourt(1, "BasketballCourt1"),
